@@ -33,7 +33,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Your user was udpated"
       redirect_to users_path
     else
-
+      flash[:notice] = "Your user was not udpated"
+      redirect_to users_path
     end
   end
 
