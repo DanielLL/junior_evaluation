@@ -9,14 +9,16 @@ Feature: Manage Users
     Then I should see "Daniel Lopez"
     And I should see "daniel.lopez@tangosource.com"
 
-  #Scenario: Create Valid Article
-    #Given I have no articles
-    #And I am on the list of articles
-    #When I click on "New Article"
-    #And I fill in "Title" with "Spuds"
-    #And I fill in "Content" with "Delicious potato wedges!"
-    #And I press "Create"
-    #Then I should see "New article created."
-    #And I should see "Spuds"
-    #And I should see "Delicious potato wedges!"
-    #And I should have 1 article
+  Scenario: Create Valid User
+    Given I have no users
+    And I am on the list of articles
+    When I click on "New User"
+    And I fill in "Name" with "Daniel"
+    And I fill in "Last Name" with "Lopez Lopez"
+    And I fill in "Mail" with "daniel.lopez@tangosource.com"
+    And I fill in "Password" with "123tamarindo"
+    And I press "Create User"
+    Then I should see "New user created."
+    And I should see "Daniel Lopez"
+    And I should see "daniel.lopez@tangosource.com"
+    And I should have 1 user
