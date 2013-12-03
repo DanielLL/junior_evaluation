@@ -9,9 +9,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create(user_attributes)
-    flash[:notice] = "New user created."
-    redirect_to users_path
+    user =  User.new(user_attributes)
+    if user.valid?
+      User.create!(user_attributes)
+      flash[:notice] = "New user created."
+      redirect_to users_path
+    else
+      flash[:notice] = "Your user was not created"
+      redirect_to :back
+    end
+
   end
 
   def update

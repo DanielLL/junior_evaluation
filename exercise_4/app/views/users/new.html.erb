@@ -1,4 +1,7 @@
 <h1>Users#new</h1>
+<% if flash[:notice] %>
+<p class="flash-notice"><%= flash[:notice] %></p>
+<% end %>
 <%= form_for user do |f| %>
   <ol class="formList">
     <li>

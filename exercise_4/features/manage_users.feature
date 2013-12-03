@@ -22,3 +22,14 @@ Feature: Manage Users
     And I should see "Daniel Lopez Lopez"
     And I should see "daniel.lopez@tangosource.com"
     And I should have 1 user
+
+  Scenario: Create an Invalid User
+    Given I have no users
+    And I am on the list of users
+    When I click on "New User"
+    And I fill in "Name" with "Daniel"
+    And I fill in "Last name" with "Lopez Lopez"
+    And I fill in "Password" with "123tamarindo"
+    And I press "Create User"
+    Then I should see "Your user was not created"
+    And I should have 0 users

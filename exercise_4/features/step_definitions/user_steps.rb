@@ -22,7 +22,7 @@ When(/^I fill in "(.*?)" with "(.*?)"$/) do |arg1, arg2|
   fill_in arg1, with: arg2 
 end
 
-Then(/^I should have (\d+) user/) do |arg1|
+Then(/^I should have (\d+) user.*/) do |arg1|
   User.all.count.should == arg1.to_i
 end
 

@@ -14,6 +14,7 @@ end
 
 group :development, :test do
   gem 'decent_exposure'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'rspec-rails'
