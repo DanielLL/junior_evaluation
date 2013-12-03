@@ -26,3 +26,11 @@ Then(/^I should have (\d+) user.*/) do |arg1|
   User.all.count.should == arg1.to_i
 end
 
+Given(/^I have a valid user created with "(.*?)" as password$/) do |arg1|
+  user = FactoryGirl.create(:user, password: arg1)
+end
+
+
+Then(/^The last user should have "(.*?)" as password$/) do |arg1|
+  User.last.password.should == arg1
+end

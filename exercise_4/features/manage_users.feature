@@ -33,3 +33,18 @@ Feature: Manage Users
     And I press "Create User"
     Then I should see "Your user was not created"
     And I should have 0 users
+
+  Scenario: Update a User with the old password
+    Given I have a valid user created with "123tamarindo" as password
+    And I am on the list of users
+    When I click on "Edit"
+    And I fill in "Name" with "Daniel"
+    And I fill in "Last name" with "Lopez Lopez"
+    And I fill in "Mail" with "daniel.lopez@tangosource.com"
+    And I fill in "Old password" with "123tamarindo"
+    And I fill in "Password" with "elmeneito"
+    And I press "Update User"
+    Then I should see "Your user was udpated"
+    And I should see "Daniel Lopez Lopez"
+    And I should see "daniel.lopez@tangosource.com"
+    And The last user should have "elmeneito" as password
