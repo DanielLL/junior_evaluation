@@ -12,6 +12,10 @@
         //Tabs 
         $( "#tabs" ).tabs();
 
+        //Tooltip
+        $( document ).tooltip();
+        $( ".tooltip" ).tooltip({ content: "This is a tooltip text" });
+
         //Progressbar interval of values
         var initial_value = 0
         var flag = true
@@ -89,7 +93,9 @@
         </div>
       </div>
       <div id="tooltip_container">
-        tool
+        <div class="tooltip">
+          <label title="" content="">Over me to see the tooltip</label>
+        </div>
       </div>
     </div>
 
