@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exercise # 1</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        //Initializers
+        //Tabs 
+        $( "#tabs" ).tabs();
+
+        //Tooltip
+        $( document ).tooltip();
+        $( ".tooltip" ).tooltip({ content: "This is a tooltip text" });
+
+        //Progressbar interval of values
+        var initial_value = 0
+        var flag = true
+        setInterval(function() {
+          if (initial_value == 100){
+            flag = false
+          }
+          if(initial_value==0){
+          flag = true
+          }
+          flag ? initial_value ++ : initial_value --;
+          set_progressbar_val(initial_value);
+        }, 80);
+        
+
+        //Datepicker initilizer
+        $('#datepicker').datepicker({
+          onSelect: function (dateText, inst) {
+            $(".date").text(dateText);
+            fill_date_info(inst)
+          }
+        });
+
+        //Functions
+        var fill_date_info = function(date_info){
+         var month = date_info.selectedMonth + 1;
+         var day   = date_info.selectedDay;
+         var year  = date_info.selectedYear;
+          $(".month").text("Selected Month: " + month);
+          $(".day").text("Selected Day: " + day);
+          $(".year").text("Selected Year: " + year);
+        }
+        var set_progressbar_val = function(val){
+          $( "#progressbar" ).progressbar({
+            value: val
+          });
+          $(".progressbar_value").text(val);
+        }
+
+        //CurrentDate of Datepicker
+        currentDate = $( "#datepicker" ).datepicker( "getDate" );
+        $(".date").text(currentDate.toLocaleDateString());
+
+      });
+    </script>
+  </head>
+  <body>
+
+
+    <div id="tabs">
+      <ul>
+        <li><a href="#datepicker_container">Datepicker</a></li>
+        <li><a href="#progressbar_container">Progress bar</a></li>
+        <li><a href="#tooltip_container">Tooltips</a></li>
+      </ul>
+      <div id="datepicker_container">
+        <div id="datepicker"></div>
+        <br>
+        <div class="selected_date">
+          <label>Selected Date:</label>
+          <br>
+          <div class="date"></div>
+          <br>
+          <div class="month"></div>
+          <div class="day"></div>
+          <div class="year"></div>
+        </div>
+      </div>
+      <div id="progressbar_container">
+        <div id="progressbar"></div>
+        <div class="progressbar_value_container">
+          <label>Progressbar value: </label>
+          <br>
+          <div class="progressbar_value"></div>
+        </div>
+      </div>
+      <div id="tooltip_container">
+        <div class="tooltip">
+          <label title="" content="">Over me to see the tooltip</label>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
