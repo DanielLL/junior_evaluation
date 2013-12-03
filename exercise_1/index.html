@@ -9,29 +9,52 @@
     <script>
       $(function() {
         //Initializers
-        //Tabs
+        //Tabs 
         $( "#tabs" ).tabs();
-        //Datepicker
-        $('#datepicker_container').datepicker({
+
+        //Progressbar interval of values
+        var initial_value = 0
+        var flag = true
+        setInterval(function() {
+          if (initial_value == 100){
+            flag = false
+          }
+          if(initial_value==0){
+          flag = true
+          }
+          flag ? initial_value ++ : initial_value --;
+          set_progressbar_val(initial_value);
+        }, 80);
+        
+
+        //Datepicker initilizer
+        $('#datepicker').datepicker({
           onSelect: function (dateText, inst) {
             $(".date").text(dateText);
             fill_date_info(inst)
           }
         });
 
+        //Functions
         var fill_date_info = function(date_info){
          var month = date_info.selectedMonth + 1;
          var day   = date_info.selectedDay;
          var year  = date_info.selectedYear;
-
           $(".month").text("Selected Month: " + month);
           $(".day").text("Selected Day: " + day);
           $(".year").text("Selected Year: " + year);
         }
+        var set_progressbar_val = function(val){
+          $( "#progressbar" ).progressbar({
+            value: val
+          });
+          $(".progressbar_value").text(val);
+        }
 
         //CurrentDate of Datepicker
-        currentDate = $( "#datepicker_container" ).datepicker( "getDate" );
+        currentDate = $( "#datepicker" ).datepicker( "getDate" );
         $(".date").text(currentDate.toLocaleDateString());
+
       });
     </script>
   </head>
@@ -40,12 +63,12 @@
 
     <div id="tabs">
       <ul>
-        <li><a href="#datepicker">Datepicker</a></li>
-        <li><a href="#progress_bar">Progress bar</a></li>
-        <li><a href="#tooltip">Tooltips</a></li>
+        <li><a href="#datepicker_container">Datepicker</a></li>
+        <li><a href="#progressbar_container">Progress bar</a></li>
+        <li><a href="#tooltip_container">Tooltips</a></li>
       </ul>
-      <div id="datepicker">
-        <div id="datepicker_container"></div>
+      <div id="datepicker_container">
+        <div id="datepicker"></div>
         <br>
         <div class="selected_date">
           <label>Selected Date:</label>
@@ -57,10 +80,15 @@
           <div class="year"></div>
         </div>
       </div>
-      <div id="progress_bar">
-        Progress
+      <div id="progressbar_container">
+        <div id="progressbar"></div>
+        <div class="progressbar_value_container">
+          <label>Progressbar value: </label>
+          <br>
+          <div class="progressbar_value"></div>
+        </div>
       </div>
-      <div id="tooltip">
+      <div id="tooltip_container">
         tool
       </div>
     </div>
