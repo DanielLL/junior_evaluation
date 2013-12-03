@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exercise # 1</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        //Initializers
+        //Tabs
+        $( "#tabs" ).tabs();
+        //Datepicker
+        $('#datepicker_container').datepicker({
+          onSelect: function (dateText, inst) {
+            $(".date").text(dateText);
+            fill_date_info(inst)
+          }
+        });
+
+        var fill_date_info = function(date_info){
+         var month = date_info.selectedMonth + 1;
+         var day   = date_info.selectedDay;
+         var year  = date_info.selectedYear;
+
+          $(".month").text("Selected Month: " + month);
+          $(".day").text("Selected Day: " + day);
+          $(".year").text("Selected Year: " + year);
+        }
+
+        //CurrentDate of Datepicker
+        currentDate = $( "#datepicker_container" ).datepicker( "getDate" );
+        $(".date").text(currentDate.toLocaleDateString());
+      });
+    </script>
+  </head>
+  <body>
+
+
+    <div id="tabs">
+      <ul>
+        <li><a href="#datepicker">Datepicker</a></li>
+        <li><a href="#progress_bar">Progress bar</a></li>
+        <li><a href="#tooltip">Tooltips</a></li>
+      </ul>
+      <div id="datepicker">
+        <div id="datepicker_container"></div>
+        <br>
+        <div class="selected_date">
+          <label>Selected Date:</label>
+          <br>
+          <div class="date"></div>
+          <br>
+          <div class="month"></div>
+          <div class="day"></div>
+          <div class="year"></div>
+        </div>
+      </div>
+      <div id="progress_bar">
+        Progress
+      </div>
+      <div id="tooltip">
+        tool
+      </div>
+    </div>
+
+  </body>
+</html>
